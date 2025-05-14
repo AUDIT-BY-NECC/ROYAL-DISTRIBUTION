@@ -31,13 +31,17 @@
 
         async function k1l2m3n4() {
             r5t4y3u2();
-            const p = prompt(a9f8g7h6("K`hgiq,fotm$Dtwqku$Hjgoe#"));
+            const p = prompt("Zone sécurisée. Entrez le mot de passe :");
+            if (!p) {
+                alert("Mot de passe requis !");
+                location.reload();
+            }
             const h = await b8v7c6x5(p);
             const e = z3x2c1v0();
             if (h === e) {
                 document.getElementById("a1s2d3f4").style.display = "block";
             } else {
-                alert(a9f8g7h6("Oqv$fcxpa$korvpeqv!"));
+                alert("Mot de passe incorrect !");
                 location.reload();
             }
         }
@@ -62,4 +66,3 @@
     </div>
 </body>
 </html>
-
