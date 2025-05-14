@@ -4,37 +4,27 @@
     <meta charset="UTF-8">
     <title>Portail Rapports Power BI</title>
     <script>
-        async function b8v7c6x5(t) {
-            const e = new TextEncoder().encode(t);
-            const d = await crypto.subtle.digest('SHA-256', e);
-            return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, '0')).join('');
-        }
+        async function checkPassword() {
+            const hashStored = "2e107fbb19c598807d1cb4be244c398fc6c6d68190d14f49c593703eebfbb348"; // SHA-256 de "NECC2024-ROYAL"
+            const password = prompt("Veuillez entrer le mot de passe :");
+            if (!password) return;
 
-        function z3x2c1v0() {
-            const s = ["935da4b5", "fbbcf31b", "53b89e6f", "4732590b", "53b94033", "d8739a4e", "b6c9af6c", "6fba96ea"];
-            const o = [3, 0, 1, 2, 4, 5, 6, 7]; // L'ordre peut être changé pour plus de complexité
-            return o.map(i => s[i]).join('');
-        }
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
-        async function k1l2m3n4() {
-            const p = prompt("Zone sécurisée. Entrez le mot de passe :");
-            if (!p) {
-                alert("Mot de passe requis !");
-                location.reload();
-            }
-            const h = await b8v7c6x5(p);
-            const e = z3x2c1v0();
-            if (h === e) {
-                document.getElementById("a1s2d3f4").style.display = "block";
+            if (hashHex === hashStored) {
+                document.getElementById("content").style.display = "block";
             } else {
                 alert("Mot de passe incorrect !");
-                location.reload();
             }
         }
     </script>
 </head>
-<body onload="k1l2m3n4()">
-    <div id="a1s2d3f4" style="display:none; text-align: center;">
+<body onload="checkPassword()">
+    <div id="content" style="display:none; text-align: center;">
         <h2>Rapport 1 - Analyse du stock</h2>
         <iframe style="width: 100%; height: 90vh;" 
                 src="https://app.powerbi.com/reportEmbed?reportId=b3d35a45-3ae5-41b4-ab4d-be6c85f1476d&autoAuth=true&ctid=296fa80e-7707-4c5d-97c2-60d76a1081c5" 
