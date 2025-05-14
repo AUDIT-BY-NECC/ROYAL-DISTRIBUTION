@@ -4,18 +4,47 @@
     <meta charset="UTF-8">
     <title>Portail Rapports Power BI</title>
     <script>
-        function checkPassword() {
-            const password = prompt("Veuillez entrer le mot de passe :");
-            if (password === "NECC2024-ROYAL") {
-                document.getElementById("content").style.display = "block";
+        function a9f8g7h6(i) {
+            return i.split('').map((c, j) => String.fromCharCode(c.charCodeAt(0) ^ (j % 7 + 3))).join('');
+        }
+
+        async function b8v7c6x5(t) {
+            const e = new TextEncoder().encode(t);
+            const d = await crypto.subtle.digest('SHA-256', e);
+            return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function r5t4y3u2() {
+            let q = 1;
+            for (let k = 1; k < 5000000; k++) {
+                q = (q * k) % 9999991;
+                if (k % 100000 === 0) q = q / 2;
+            }
+            return q;
+        }
+
+        function z3x2c1v0() {
+            const s = ["0d511e", "fc89a8", "e1aaf2", "2b9d7a", "84ec0f", "832e44", "2d5190", "952e09", "c346ff", "5cb1f8", "b8c2"];
+            const o = [2, 0, 4, 1, 3, 6, 5, 7, 9, 8, 10];
+            return o.map(i => s[i]).join('');
+        }
+
+        async function k1l2m3n4() {
+            r5t4y3u2();
+            const p = prompt(a9f8g7h6("K`hgiq,fotm$Dtwqku$Hjgoe#"));
+            const h = await b8v7c6x5(p);
+            const e = z3x2c1v0();
+            if (h === e) {
+                document.getElementById("a1s2d3f4").style.display = "block";
             } else {
-                alert("Mot de passe incorrect !");
+                alert(a9f8g7h6("Oqv$fcxpa$korvpeqv!"));
+                location.reload();
             }
         }
     </script>
 </head>
-<body onload="checkPassword()">
-    <div id="content" style="display:none; text-align: center;">
+<body onload="k1l2m3n4()">
+    <div id="a1s2d3f4" style="display:none; text-align: center;">
         <h2>Rapport 1 - Analyse du stock</h2>
         <iframe style="width: 100%; height: 90vh;" 
                 src="https://app.powerbi.com/reportEmbed?reportId=b3d35a45-3ae5-41b4-ab4d-be6c85f1476d&autoAuth=true&ctid=296fa80e-7707-4c5d-97c2-60d76a1081c5" 
@@ -30,9 +59,7 @@
         <iframe style="width: 100%; height: 90vh;" 
                 src="https://app.powerbi.com/reportEmbed?reportId=d07ba249-7981-4e2a-abf6-b5eb4ed0b6d9&autoAuth=true&ctid=296fa80e-7707-4c5d-97c2-60d76a1081c5" 
                 frameborder="0" allowfullscreen></iframe>
-
     </div>
 </body>
 </html>
-
 
