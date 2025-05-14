@@ -4,29 +4,36 @@
     <meta charset="UTF-8">
     <title>Portail Rapports Power BI</title>
     <script>
-        async function checkPassword() {
-            const hashStored = "935da4b5fbbcf31b53b89e6f4732590b53b94033d8739a4eb6c9af6c6fba96ea";
-            const password = prompt("Veuillez entrer le mot de passe :");
-            if (!password) return;
+        async function x0x() {
+            const p1 = "935da4b5fbbcf31b53b89e6f";
+            const p2 = "4732590b53b94033d8739a4e";
+            const p3 = "b6c9af6c6fba96ea";
+            const hS = p1 + p2 + p3;
 
-            const cleanPassword = password.trim(); // Retire espaces avant/après
+            const decoder = atob("VmV1aWxsZXogZW50cmVyIGxlIG1vdCBkZSBwYXNzZSA6");
+            const uI = prompt(decoder);
+            if (!uI) return;
 
-            const encoder = new TextEncoder();
-            const data = encoder.encode(cleanPassword);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            const pC = uI.trim();
 
-            if (hashHex === hashStored) {
-                document.getElementById("content").style.display = "block";
+            const e = new TextEncoder();
+            const d = e.encode(pC);
+            const hB = await crypto.subtle.digest('SHA-256', d);
+            const hA = Array.from(new Uint8Array(hB));
+            const hX = hA.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            if (hX === hS) {
+                document.getElementById("c9").style.display = "block";
             } else {
-                alert("Mot de passe incorrect !");
+                alert("Accès refusé !");
             }
         }
+
+        window.onload = () => setTimeout(x0x, 500);
     </script>
 </head>
-<body onload="checkPassword()">
-    <div id="content" style="display:none; text-align: center;">
+<body>
+    <div id="c9" style="display:none; text-align: center;">
         <h2>Rapport 1 - Analyse du stock</h2>
         <iframe style="width: 100%; height: 90vh;" 
                 src="https://app.powerbi.com/reportEmbed?reportId=b3d35a45-3ae5-41b4-ab4d-be6c85f1476d&autoAuth=true&ctid=296fa80e-7707-4c5d-97c2-60d76a1081c5" 
